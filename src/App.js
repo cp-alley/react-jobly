@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import './App.css';
 import CompanyList from './CompanyList';
 import JobList from './JobList';
@@ -22,6 +22,7 @@ function App() {
         <Route path="/jobs" element={<JobList />}></Route>
         <Route path="/companies/:id" element={<CompanyDetail />}></Route>
         <Route path="/" element={<Homepage />}></Route>
+        <Route path="*" element={<Navigate to="/"/>}></Route>
       </Routes>
 
     </BrowserRouter>
