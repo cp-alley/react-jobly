@@ -1,0 +1,50 @@
+App
+    JoblyApp
+      state=users
+      define handleSearch()
+
+        RoutesList
+          props = handleSearch()
+
+            Route "/companies"
+                CompanyList
+                  state=list of companies
+                  props = handleSearch()
+
+                    SearchForm
+                      state = searchTerms
+                      props = handleSearch()
+
+                    CompanyCard
+                      props=company details
+
+                        Link to="companies/:id"
+
+            Route "/jobs"
+                JobList
+                  state = list of jobs
+                  props = handleSearch()
+
+                    SearchForm
+                      state = searchTerms
+                      props = handleSearch()
+
+                    JobCard
+                      props = job details
+
+            Route "/companies/:id"
+                CompanyHeader
+                  state = company details
+
+                    JobList
+                    props = list of jobs for that company
+
+                        JobCard
+                        props = job details
+
+            Route "/"
+                LandingPage
+                  no props or state
+
+        NavBar
+            NavLink (Link?)                   |  Links for homepage, jobs, companies
