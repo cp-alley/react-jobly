@@ -1,15 +1,13 @@
-App
-    JoblyApp
+
+    App
       state=users
-      define handleSearch()
 
         RoutesList
-          props = handleSearch()
 
             Route "/companies"
                 CompanyList
                   state=list of companies
-                  props = handleSearch()
+                  handleSearch()
 
                     SearchForm
                       state = searchTerms
@@ -23,20 +21,23 @@ App
             Route "/jobs"
                 JobList
                   state = list of jobs
-                  props = handleSearch()
+                  handleSearch()
 
                     SearchForm
                       state = searchTerms
                       props = handleSearch()
 
-                    JobCard
-                      props = job details
+                    JobCardList
+                        props = list of jobs
+
+                      JobCard
+                        props = job details
 
             Route "/companies/:id"
-                CompanyHeader
+                CompanyDetail
                   state = company details
 
-                    JobList
+                    JobCardList
                     props = list of jobs for that company
 
                         JobCard
