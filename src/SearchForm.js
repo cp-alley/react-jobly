@@ -1,25 +1,29 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+
 
 function SearchForm({ handleSearch }) {
-  //add state
-  const { companies, jobs } = useParams();
-  const url = companies === undefined ? jobs : companies;
+  const [formData, setFormData] = useState("")
 
-//handleSubmit
-  //handleSearch
 
-//handleChange
-  //updating local state
+  function handleSubmit(evt){
+    evt.preventDefault();
+    handleSearch(formData);
+  }
+
+
+  function handleChange (evt) {
+    const { value } = evt.target
+    setFormData(curr => value)
+  }
 
   return (
     <form className="Search-Form" onSubmit={handleSubmit}>
-      <label htmlFor={`${url}-search`}></label>
+      <label htmlFor="search-bar"></label>
       <input
-      id={`${url}-search`}
+      id="search-bar"
       name="searchTerm"
       onChange={handleChange}></input>
-      <button></button>
+      <button>Search</button>
     </form>
   );
 }

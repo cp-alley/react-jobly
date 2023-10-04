@@ -23,13 +23,18 @@ function CompanyList() {
     fetchCompanies();
   }, []);
 
+  async function handleSearch(searchTerm) {
+    let res = await JoblyApi.getCompanyList(searchTerm);
+    setCompanies(curr => res);
+  }
+
   if (!companies) {
     return <Loading />;
   }
 
   return (
     <div>
-      <SearchForm />
+      <SearchForm handleSearch={handleSearch} />
       {companies.map(c => <CompanyCard key={c.handle} company={c} />)}
     </div>
   );
