@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
 import Loading from "./Loading";
 import JoblyApi from "./api";
+import "./CompanyDetail.css"
 
 /** CompanyDetail
  *
@@ -28,11 +29,13 @@ function CompanyDetail() {
   }
 
   return (
-    <>
-      <h2>{company.name}</h2>
-      <p>{company.description}</p>
+    <div className="CompanyDetail">
+      <header className="CompanyDetail-header">
+        <h2>{company.name}</h2>
+        <p>{company.description}</p>
+      </header>
       <JobCardList jobs={company.jobs} />
-    </>
+    </div>
   );
 
 

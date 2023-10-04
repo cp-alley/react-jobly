@@ -74,7 +74,7 @@ class JoblyApi {
 
     return res.jobs;
   }
-  
+
   // obviously, you'll add a lot here ...
 }
 

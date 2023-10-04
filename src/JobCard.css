@@ -1,0 +1,7 @@
+.JobCard{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid darkgray;
+}
