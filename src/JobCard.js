@@ -4,8 +4,8 @@ function JobCard({job}) {
   return (
     <div>
       <h2>{job.title}</h2>
-      <p>{job.salary}</p>
-      <p>{job.equity}</p>
+      <p>Salary: {job.salary}</p>
+      <p>Equity: {job.equity}</p>
     </div>
   )
 }

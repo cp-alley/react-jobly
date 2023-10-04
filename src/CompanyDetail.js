@@ -22,9 +22,9 @@ function CompanyDetail() {
     }
     fetchDetails();
   }, []);
-  
-  if(!company){
-    return <Loading/>
+
+  if (!company) {
+    return <Loading />;
   }
 
   return (

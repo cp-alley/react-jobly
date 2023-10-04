@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./Nav.css"
 
 /** Nav
  *
@@ -7,10 +8,10 @@ import { NavLink } from "react-router-dom";
  */
 function Nav() {
   return (
-    <nav>
-      <NavLink to="/">Jobly</NavLink>
-      <NavLink to="/companies">Companies</NavLink>
-      <NavLink to="/jobs">Jobs</NavLink>
+    <nav className="Nav-navbar">
+      <NavLink className="Nav-navlink" to="/">Jobly</NavLink>
+      <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
+      <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink>
     </nav>
   );
 }

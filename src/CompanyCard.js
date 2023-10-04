@@ -12,12 +12,16 @@ function CompanyCard({ company }) {
   return (
     <div>
       <Link to={`/companies/${company.handle}`}>
-      <h2>{company.name}</h2>
+        <h2>{company.name}</h2>
       </Link>
-      <img src={`${company.logoUrl}`} alt={`Logo for ${company.name}`}></img>
+      {company.logoUrl &&
+        <img
+          src={`${company.logoUrl}`}
+          alt={`Logo for ${company.name}`}>
+        </img>}
       <p>{company.description}</p>
     </div>
-  )
+  );
 }
 
 export default CompanyCard;

@@ -1,0 +1,14 @@
+.Nav-navbar {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
+
+.Nav-navbar .Nav-navlink {
+  text-decoration: none;
+  color: black
+}
+
+.Nav-navbar .Nav-navlink.active {
+  font-weight: 600;
+}

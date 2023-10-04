@@ -58,11 +58,23 @@ class JoblyApi {
   static async getCompanyList(searchTerm) {
     let res;
     searchTerm === undefined
-    ? res = await this.request("companies/")
-    : res = await this.request("companies/", {nameLike: searchTerm});
+      ? res = await this.request("companies/")
+      : res = await this.request("companies/", { nameLike: searchTerm });
 
     return res.companies;
   }
+
+  /** Get list of jobs */
+
+  static async getJobList(searchTerm) {
+    let res;
+    searchTerm === undefined
+      ? res = await this.request("jobs/")
+      : res = await this.request("jobs/", { title: searchTerm });
+
+    return res.jobs;
+  }
+  
   // obviously, you'll add a lot here ...
 }
 

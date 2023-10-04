@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 
-
+/** SearchForm: renders search bar
+ *
+ * Props:
+ * -handleSearch
+ *
+ * State:
+ * -formData
+ *
+ * CompanyList -> SearchForm
+ * JobList -> SearchForm
+ */
 function SearchForm({ handleSearch }) {
   const [formData, setFormData] = useState("")
 
