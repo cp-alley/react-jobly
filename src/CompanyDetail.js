@@ -37,8 +37,6 @@ function CompanyDetail() {
       <JobCardList jobs={company.jobs} />
     </div>
   );
-
-
 }
 
 export default CompanyDetail;

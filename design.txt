@@ -45,7 +45,9 @@
 
             Route "/"
                 LandingPage
-                  no props or state
+                  props: isLoggedIn
+
+            Route "/signup"
 
         NavBar
             NavLink (Link?)                   |  Links for homepage, jobs, companies

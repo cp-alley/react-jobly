@@ -8,8 +8,8 @@ import "./JobList.css"
 /** Joblist
  *
  * State:
- * -listOfJobs
- *
+ * -jobs
+ * 
  * /jobs -> JobList -> SearchForm, JobCardList
  */
 

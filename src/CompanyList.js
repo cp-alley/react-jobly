@@ -38,7 +38,6 @@ function CompanyList() {
       {companies.map(c => <CompanyCard key={c.handle} company={c} />)}
     </div>
   );
-
 }
 
 export default CompanyList;

@@ -12,15 +12,14 @@ import "./SearchForm.css";
  * CompanyList -> SearchForm
  * JobList -> SearchForm
  */
+
 function SearchForm({ handleSearch }) {
   const [formData, setFormData] = useState("");
-
 
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSearch(formData);
   }
-
 
   function handleChange(evt) {
     const { value } = evt.target;
@@ -33,6 +32,9 @@ function SearchForm({ handleSearch }) {
       <input
         id="search-bar"
         name="searchTerm"
+        value={formData}
+        type="text"
+        placeholder="Search for..."
         className="SearchForm-input"
         onChange={handleChange}></input>
       <button type="submit" className="SearchForm-button">Search</button>
