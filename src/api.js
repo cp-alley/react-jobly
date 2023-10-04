@@ -75,7 +75,13 @@ class JoblyApi {
     return res.jobs;
   }
 
-  // obviously, you'll add a lot here ...
+
+  // Authentication Routes
+
+  static async loginUser({username, password}) {
+    let res = await this.request("/auth/token", {username, password})
+    return res.token;
+  }
 }
 
 export default JoblyApi;
