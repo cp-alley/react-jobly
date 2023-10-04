@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import RoutesList from './RoutesList';
@@ -12,17 +12,25 @@ import JoblyApi from './api';
  */
 
 function App() {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(function(){
+    async function fetchCurrentUser(){
+      const response = fetch(JoblyApi.)
+    }
+    fetchCurrentUser()
+  }, [token])
 
   async function loginUser(userData) {
-    let token = await JoblyApi.loginUser(userData)
-    setToken(curr => token)
+    let token = await JoblyApi.loginUser(userData);
+    setToken(curr => token);
   }
 
-  async function signUp(userData){
+  async function signUp(userData) {
 
-    let token = await JoblyApi.signUpUser(userData)
-    setToken(curr => token)
+    let token = await JoblyApi.signUpUser(userData);
+    setToken(curr => token);
   }
 
   //logout
@@ -30,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <RoutesList signUp={signUp} loginUser={loginUser}/>
+      <RoutesList signUp={signUp} loginUser={loginUser} />
     </BrowserRouter>
   );
 }
