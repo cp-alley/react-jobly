@@ -1,0 +1,6 @@
+.CompanyList {
+  display: flex;
+  flex-direction: column;
+  margin: 6rem 10rem;
+  align-items: center;
+}

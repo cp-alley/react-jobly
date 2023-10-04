@@ -1,0 +1,25 @@
+.CompanyCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid darkgray;
+}
+
+.CompanyCard a {
+  text-decoration: none;
+  color: black;
+}
+
+.CompanyCard a:hover {
+  color: blue
+}
+
+.CompanyCard img {
+  height: auto;
+  width: 4rem;
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}

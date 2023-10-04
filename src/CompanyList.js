@@ -3,7 +3,7 @@ import CompanyCard from "./CompanyCard";
 import Loading from "./Loading";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
-
+import "./CompanyList.css"
 
 /**CompanyList:
  *
@@ -33,7 +33,7 @@ function CompanyList() {
   }
 
   return (
-    <div>
+    <div className="CompanyList">
       <SearchForm handleSearch={handleSearch} />
       {companies.map(c => <CompanyCard key={c.handle} company={c} />)}
     </div>
