@@ -7,7 +7,7 @@
 
       userContext.Provider
 
-        ProtectedRoutesList
+        RoutesList: 
 
             Route "/companies" *
                 CompanyList
@@ -65,23 +65,26 @@
                   -isLoggedIn -> welcome message
                   -!isLoggedIn -> login/signup buttons
 
-          NavBar
+                    Alert
+
+            Route "/signup"
+                SignupForm
+                  props: signup()
+
+                    Alert
+
+            Route "/login"
+                LoginForm
+                  props: login()
+
+                    Alert
+
+          NavBar(not in routes list)
+
             NavLink (Link?)
             context: isLoggedIn
                 -isLoggedIn -> Links for homepage, jobs, companies, profile
                 -!isLoggedIn -> Links for homepage, signup, login
-
-
-
-        PublicRoutesList (not in userContext.Provider)
-
-          Route "/signup"
-              SignupForm
-                props: signup()
-
-          Route "/login"
-              LoginForm
-                props: login()
 
 
 

@@ -78,8 +78,17 @@ class JoblyApi {
 
   // Authentication Routes
 
-  static async loginUser({username, password}) {
-    let res = await this.request("/auth/token", {username, password})
+  static async loginUser({ username, password }) {
+    let res = await this.request("auth/token", { username, password }, "POST");
+    return res.token;
+  }
+
+  static async signUpUser({ username, password, firstName, lastName, email }) {
+
+    let res = await this.request(
+      "auth/register",
+      { username, password, firstName, lastName, email },
+      "POST");
     return res.token;
   }
 }

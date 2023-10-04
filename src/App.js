@@ -12,17 +12,25 @@ import JoblyApi from './api';
  */
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
 
-  async function loginUser() {
-    let token = await JoblyApi.loginUser()
-    setUser(curr => token)
+  async function loginUser(userData) {
+    let token = await JoblyApi.loginUser(userData)
+    setToken(curr => token)
   }
+
+  async function signUp(userData){
+
+    let token = await JoblyApi.signUpUser(userData)
+    setToken(curr => token)
+  }
+
+  //logout
 
   return (
     <BrowserRouter>
       <Nav />
-      <RoutesList />
+      <RoutesList signUp={signUp} loginUser={loginUser}/>
     </BrowserRouter>
   );
 }
