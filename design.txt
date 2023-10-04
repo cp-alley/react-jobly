@@ -1,10 +1,15 @@
 
     App
-      state=users
 
-        RoutesList
+      context: user
+      state: user
+      functions: signup, login
 
-            Route "/companies"
+      userContext.Provider
+
+        ProtectedRoutesList
+
+            Route "/companies" *
                 CompanyList
                   state=list of companies
                   handleSearch()
@@ -18,7 +23,7 @@
 
                         Link to="companies/:id"
 
-            Route "/jobs"
+            Route "/jobs" *
                 JobList
                   state = list of jobs
                   handleSearch()
@@ -33,7 +38,11 @@
                       JobCard
                         props = job details
 
-            Route "/companies/:id"
+                          ApplyButton: user context to enable vs disable
+                          props = jobId
+                          context = userId
+
+            Route "/companies/:id" *
                 CompanyDetail
                   state = company details
 
@@ -43,11 +52,37 @@
                         JobCard
                         props = job details
 
-            Route "/"
+                          ApplyButton: user context to enable vs disable
+                          props = jobId
+                          context = userId
+
+            Route "/profile" *
+              ProfileForm
+
+            Route "/" *
                 LandingPage
-                  props: isLoggedIn
+                  context: isLoggedIn
+                  -isLoggedIn -> welcome message
+                  -!isLoggedIn -> login/signup buttons
 
-            Route "/signup"
+          NavBar
+            NavLink (Link?)
+            context: isLoggedIn
+                -isLoggedIn -> Links for homepage, jobs, companies, profile
+                -!isLoggedIn -> Links for homepage, signup, login
 
-        NavBar
-            NavLink (Link?)                   |  Links for homepage, jobs, companies
+
+
+        PublicRoutesList (not in userContext.Provider)
+
+          Route "/signup"
+              SignupForm
+                props: signup()
+
+          Route "/login"
+              LoginForm
+                props: login()
+
+
+
+    * need authentication
