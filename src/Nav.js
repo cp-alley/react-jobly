@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import userContext from "./userContext";
 import "./Nav.css";
 
 /** Nav
@@ -7,11 +8,19 @@ import "./Nav.css";
  * Nav -> NavLink
  */
 function Nav() {
+  const { currentUser } = useContext(userContext);
+
   return (
     <nav className="Nav-navbar">
       <NavLink className="Nav-navlink" to="/">Jobly</NavLink>
-      <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
-      <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink>
+      {!currentUser
+        ? <>
+          <NavLink className="Nav-navlink" to="/signup">SignUp</NavLink>
+          <NavLink className="Nav-navlink" to="/login">Login</NavLink></>
+        : <>
+          <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
+          <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink></>
+      }
     </nav>
   );
 }

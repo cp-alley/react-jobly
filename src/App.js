@@ -4,6 +4,7 @@ import './App.css';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
+import userContext from './userContext';
 
 /** App: Renders navigation bar and handles routes
  *
@@ -15,12 +16,13 @@ function App() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(function(){
-    async function fetchCurrentUser(){
-      const response = fetch(JoblyApi.)
-    }
-    fetchCurrentUser()
-  }, [token])
+  // useEffect(function () {
+  //   async function fetchCurrentUser() {
+  //     const userData = await JoblyApi.getUser("testtest");
+  //     setCurrentUser(curr => userData)
+  //   }
+  //   fetchCurrentUser();
+  // }, [token]);
 
   async function loginUser(userData) {
     let token = await JoblyApi.loginUser(userData);
@@ -36,10 +38,12 @@ function App() {
   //logout
 
   return (
-    <BrowserRouter>
-      <Nav />
-      <RoutesList signUp={signUp} loginUser={loginUser} />
-    </BrowserRouter>
+    <userContext.Provider value={{currentUser}}>
+      <BrowserRouter>
+        <Nav />
+        <RoutesList signUp={signUp} loginUser={loginUser} />
+      </BrowserRouter>
+    </userContext.Provider>
   );
 }
 
