@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import "./LoginForm.css"
 
 /** Render form for login
  *
@@ -35,27 +36,35 @@ function LoginForm({ loginUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="LoginForm">
       {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
-      <label htmlFor="username">Username</label>
+      <div className="LoginForm-field">
+
+      <label htmlFor="username" className="LoginForm-label">Username</label>
       <input
         id="username"
         name="username"
         value={formData.username}
         type="text"
         onChange={handleChange}
-        placeholder="Username">
+        placeholder="Username"
+        className="LoginForm-input">
       </input>
-      <label htmlFor="password">Password</label>
+      </div>
+      <div className="LoginForm-field">
+
+      <label htmlFor="password" className="LoginForm-label">Password</label>
       <input
         id="password"
         name="password"
         value={formData.password}
         type="password"
         onChange={handleChange}
-        placeholder="Password">
+        placeholder="Password"
+        className="LoginForm-input">
       </input>
-      <button type="submit">Login</button>
+      </div>
+      <button type="submit" className="LoginForm-button">Login</button>
     </form>
   );
 }
