@@ -89,7 +89,7 @@ class JoblyApi {
   // Authentication Routes
 
   /** Get token from username and password */
-  static async loginUser({ username, password }) {
+  static async getToken({ username, password }) {
     let res = await this.request("auth/token", { username, password }, "POST");
     this.token = res.token;
     return res.token;

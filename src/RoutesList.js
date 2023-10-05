@@ -15,15 +15,15 @@ import ProfileForm from "./ProfileForm";
  * -signUp
  */
 
-function RoutesList({ loginUser, signUp }) {
+function RoutesList({ loginUser, signUp, alert }) {
   return (
     <Routes>
       <Route path="/companies" element={<CompanyList />}></Route>
       <Route path="/jobs" element={<JobList />}></Route>
       <Route path="/companies/:handle" element={<CompanyDetail />}></Route>
-      <Route path="/login" element={<LoginForm loginUser={loginUser} />}></Route>
-      <Route path="/signup" element={<SignUpForm signUp={signUp} />}></Route>
-      <Route path="/profile" element={<ProfileForm />}></Route>
+      <Route path="/login" element={<LoginForm loginUser={loginUser} alert={alert} />}></Route>
+      <Route path="/signup" element={<SignUpForm signUp={signUp} alert={alert} />}></Route>
+      <Route path="/profile" element={<ProfileForm alert={alert} />}></Route>
       <Route path="/" element={<Homepage />}></Route>
       <Route path="*" element={<Navigate to="/" />}></Route>
     </Routes>);

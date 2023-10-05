@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "./Alert";
 
 /** Render form for login
  *
@@ -11,8 +12,9 @@ import { useNavigate } from "react-router-dom";
  *
  *  /login -> LoginForm
  */
-function LoginForm({ loginUser }) {
+function LoginForm({ loginUser, alert }) {
   const [formData, setFormData] = useState({ username: "testtest", password: "password" });
+
   const navigate = useNavigate();
 
   function handleChange(evt) {
@@ -20,14 +22,19 @@ function LoginForm({ loginUser }) {
     setFormData(curr => ({ ...formData, [name]: value }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    loginUser(formData);
-    navigate("/");
+    try{
+      await loginUser(formData);
+    }catch(err){
+      console.log(err, "err in loginForm")
+    }
+    //navigate("/");
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      {alert && <Alert message={alert} />}
       <label htmlFor="username">Username</label>
       <input
         id="username"

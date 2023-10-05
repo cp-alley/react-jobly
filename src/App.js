@@ -20,6 +20,7 @@ import jwt_decode from "jwt-decode";
 function App() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [alert, setAlert]= useState(null)
 
   useEffect(function () {
     async function fetchCurrentUser() {
@@ -30,10 +31,14 @@ function App() {
     if (token !== null) fetchCurrentUser();
   }, [token]);
 
+
   async function loginUser(userData) {
-    let token = await JoblyApi.loginUser(userData);
-    setToken(curr => token);
-  }
+      let token = await JoblyApi.getToken(userData);
+      setToken(curr => token);
+
+      //setAlert(err.message)
+
+  }//{message: 'Invalid username/password', status: 401}
 
   async function signUp(userData) {
     let token = await JoblyApi.signUpUser(userData);
@@ -49,7 +54,7 @@ function App() {
     <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
         <Nav logout={logoutUser} />
-        <RoutesList signUp={signUp} loginUser={loginUser} />
+        <RoutesList signUp={signUp} loginUser={loginUser} alert={alert} />
       </BrowserRouter>
     </userContext.Provider>
   );
