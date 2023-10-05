@@ -4,7 +4,8 @@ import "./CompanyCard.css";
 
 /** Render a company's details
  *
- *  Props: company like { handle, name, description, numEmployees, logoUrl }
+ *  Props:
+ *  -company like { handle, name, description, numEmployees, logoUrl }
  *
  *  CompanyList -> CompanyCard
  */

@@ -69,7 +69,7 @@ class JoblyApi {
 
   static async getJobList(searchTerm) {
     let res;
-    console.log("token=", this.token)
+    console.log("token=", this.token);
     searchTerm === undefined
       ? res = await this.request("jobs/")
       : res = await this.request("jobs/", { title: searchTerm });
@@ -80,20 +80,22 @@ class JoblyApi {
   /** Get user info */
 
   static async getUser(username) {
-    let res = await this.request(`users/${username}`)
-    console.log("getUser res=", res)
-    return res.user
+    let res = await this.request(`users/${username}`);
+    console.log("getUser res=", res);
+    return res.user;
   }
 
 
   // Authentication Routes
 
+  /** Get token from username and password */
   static async loginUser({ username, password }) {
     let res = await this.request("auth/token", { username, password }, "POST");
     this.token = res.token;
     return res.token;
   }
 
+  /** Get token based when user registers */
   static async signUpUser({ username, password, firstName, lastName, email }) {
 
     let res = await this.request(

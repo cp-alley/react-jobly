@@ -8,7 +8,7 @@ import "./CompanyDetail.css"
 /** CompanyDetail
  *
  * State:
- * -companyDetails
+ * -company
  *
  * /companies/:id -> CompanyDetail -> JobCardList
  */

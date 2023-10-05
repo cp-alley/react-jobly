@@ -3,12 +3,12 @@ import CompanyCard from "./CompanyCard";
 import Loading from "./Loading";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
-import "./CompanyList.css"
+import "./CompanyList.css";
 
 /**CompanyList:
  *
  * State:
- * -listOfCompanies
+ * -companies
  *
  * /companies -> CompanyList -> SearchForm, CompanyCard
  */

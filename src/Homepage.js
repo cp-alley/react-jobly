@@ -19,7 +19,6 @@ function Homepage() {
           <Link to="/signup">Sign up</Link>
         </>
       }
-
     </>
   );
 }

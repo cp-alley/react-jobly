@@ -5,6 +5,9 @@ import "./Nav.css";
 
 /** Nav
  *
+ * Props:
+ * -logout
+ * 
  * Nav -> NavLink
  */
 function Nav({logout}) {

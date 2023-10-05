@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 /** Render form for login
  *
+ * Props:
+ *  -loginUser
+ *
  *  State:
  *   -formData
  *

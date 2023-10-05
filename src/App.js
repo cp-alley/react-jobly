@@ -9,6 +9,10 @@ import jwt_decode from "jwt-decode";
 
 /** App: Renders navigation bar and handles routes
  *
+ * State:
+ * -token
+ * -currentUser
+ *
  * App -> (CompanyList, JobList, CompanyDetail, Homepage)
  * App -> Nav
  */
@@ -20,8 +24,6 @@ function App() {
   useEffect(function () {
     async function fetchCurrentUser() {
       const decoded = jwt_decode(token);
-      console.log("decoded=", decoded);
-      //const payload = jwt.decode(token);
       const userData = await JoblyApi.getUser(decoded.username);
       setCurrentUser(curr => userData);
     }
@@ -34,7 +36,6 @@ function App() {
   }
 
   async function signUp(userData) {
-
     let token = await JoblyApi.signUpUser(userData);
     setToken(curr => token);
   }
