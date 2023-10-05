@@ -18,30 +18,35 @@ import jwt_decode from "jwt-decode";
  */
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(function () {
     async function fetchCurrentUser() {
+      JoblyApi.token = token;
       const decoded = jwt_decode(token);
       const userData = await JoblyApi.getUser(decoded.username);
       setCurrentUser(userData);
-      JoblyApi.token = token;
     }
-    if (token !== null) fetchCurrentUser()
+    if (token !== null) fetchCurrentUser();
+
   }, [token]);
 
   async function login(userData) {
     const token = await JoblyApi.loginUser(userData);
     setToken(token);
+    localStorage.setItem("token", token);
+
   }
 
   async function signUp(userData) {
     const token = await JoblyApi.signUpUser(userData);
     setToken(token);
+    localStorage.setItem("token", token);
   }
 
   function logoutUser() {
+    //delete token from local storage
     setToken(null);
     setCurrentUser(null);
   }
@@ -57,3 +62,8 @@ function App() {
 }
 
 export default App;
+
+
+//protected routes:
+//check if token in local storage??
+//state: has a current user??
