@@ -50,7 +50,7 @@ class JoblyApi {
   /** Get details on a company by handle. */
 
   static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
+    const res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
@@ -80,8 +80,7 @@ class JoblyApi {
   /** Get user info */
 
   static async getUser(username) {
-    let res = await this.request(`users/${username}`);
-    console.log("getUser res=", res);
+    const res = await this.request(`users/${username}`);
     return res.user;
   }
 
@@ -89,20 +88,17 @@ class JoblyApi {
   // Authentication Routes
 
   /** Get token from username and password */
-  static async getToken({ username, password }) {
-    let res = await this.request("auth/token", { username, password }, "POST");
-    this.token = res.token;
+  static async loginUser({ username, password }) {
+    const res = await this.request("auth/token", { username, password }, "POST");
     return res.token;
   }
 
   /** Get token based when user registers */
   static async signUpUser({ username, password, firstName, lastName, email }) {
-
-    let res = await this.request(
+    const res = await this.request(
       "auth/register",
       { username, password, firstName, lastName, email },
       "POST");
-    this.token = res.token;
     return res.token;
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "./Alert";
 
 /** SignupForm
  *
@@ -8,6 +9,7 @@ import { useNavigate } from "react-router-dom";
  *
  * State:
  * -formData
+ * -alerts
  *
  * /signup -> SignupForm
  */
@@ -21,21 +23,28 @@ function SignUpForm({ signUp }) {
       email: ""
     }
   );
+  const [alerts, setAlerts] = useState(null);
+
   const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(curr => ({ ...formData, [name]: value }));
+    setFormData(formData => ({ ...formData, [name]: value }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signUp(formData);
-    navigate("/");
+    try {
+      await signUp(formData);
+      navigate("/");
+    } catch (err) {
+      setAlerts(err.map(e => e.message));
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <label htmlFor="username">Username</label>
       <input
         id="username"

@@ -9,32 +9,34 @@ import Alert from "./Alert";
  *
  *  State:
  *   -formData
+ *   -alerts
  *
  *  /login -> LoginForm
  */
-function LoginForm({ loginUser, alert }) {
+function LoginForm({ loginUser }) {
   const [formData, setFormData] = useState({ username: "testtest", password: "password" });
+  const [alerts, setAlerts] = useState(null);
 
   const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(curr => ({ ...formData, [name]: value }));
+    setFormData(formData => ({ ...formData, [name]: value }));
   }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await loginUser(formData);
-    }catch(err){
-      console.log(err, "err in loginForm")
+      navigate("/");
+    } catch (err) {
+      setAlerts(err.map(e => e.message));
     }
-    //navigate("/");
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      {alert && <Alert message={alert} />}
+      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <label htmlFor="username">Username</label>
       <input
         id="username"

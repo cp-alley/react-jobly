@@ -20,29 +20,25 @@ import jwt_decode from "jwt-decode";
 function App() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [alert, setAlert]= useState(null)
 
   useEffect(function () {
     async function fetchCurrentUser() {
       const decoded = jwt_decode(token);
       const userData = await JoblyApi.getUser(decoded.username);
-      setCurrentUser(curr => userData);
+      setCurrentUser(userData);
+      JoblyApi.token = token;
     }
-    if (token !== null) fetchCurrentUser();
+    if (token !== null) fetchCurrentUser()
   }, [token]);
 
-
-  async function loginUser(userData) {
-      let token = await JoblyApi.getToken(userData);
-      setToken(curr => token);
-
-      //setAlert(err.message)
-
-  }//{message: 'Invalid username/password', status: 401}
+  async function login(userData) {
+    const token = await JoblyApi.loginUser(userData);
+    setToken(token);
+  }
 
   async function signUp(userData) {
-    let token = await JoblyApi.signUpUser(userData);
-    setToken(curr => token);
+    const token = await JoblyApi.signUpUser(userData);
+    setToken(token);
   }
 
   function logoutUser() {
@@ -54,7 +50,7 @@ function App() {
     <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
         <Nav logout={logoutUser} />
-        <RoutesList signUp={signUp} loginUser={loginUser} alert={alert} />
+        <RoutesList signUp={signUp} loginUser={login} />
       </BrowserRouter>
     </userContext.Provider>
   );
