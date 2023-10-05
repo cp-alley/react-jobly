@@ -30,6 +30,7 @@ function App() {
     }
     if (token !== null) fetchCurrentUser();
 
+
   }, [token]);
 
   async function login(userData) {
@@ -46,7 +47,7 @@ function App() {
   }
 
   function logoutUser() {
-    //delete token from local storage
+    localStorage.removeItem("token");
     setToken(null);
     setCurrentUser(null);
   }

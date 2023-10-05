@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import CompanyCard from "./CompanyCard";
 import Loading from "./Loading";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
 import "./CompanyList.css";
+import userContext from "./userContext";
 
 /**CompanyList:
  *
@@ -14,6 +16,8 @@ import "./CompanyList.css";
  */
 function CompanyList() {
   const [companies, setCompanies] = useState(null);
+  const [loadedCurrentUser, setLoadedCurrentUser] = useState(false);
+  const { currentUser } = useContext(userContext);
 
   useEffect(function () {
     async function fetchCompanies() {
@@ -21,6 +25,7 @@ function CompanyList() {
       setCompanies(curr => res);
     }
     fetchCompanies();
+    setLoadedCurrentUser(true);
   }, []);
 
   async function handleSearch(searchTerm) {
@@ -31,6 +36,13 @@ function CompanyList() {
   if (!companies) {
     return <Loading />;
   }
+
+  if (!loadedCurrentUser) {
+    return <Loading />;
+  }
+  // If we have loaded the current user, render as normal. If we have not loadedCurrentUser, render loading screen
+  if (!currentUser && loadedCurrentUser) return <Navigate to="/"/>
+
 
   return (
     <div className="CompanyList">
