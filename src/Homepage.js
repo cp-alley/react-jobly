@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import userContext from "./userContext";
 
 /** Homepage: homepage for Jobly */
 
-function Homepage({ currentUser }) {
+function Homepage() {
+  const { currentUser } = useContext(userContext);
+
   return (
     <>
       <h1>Jobly</h1>

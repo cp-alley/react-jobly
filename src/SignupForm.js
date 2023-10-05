@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /** SignupForm
  *
@@ -20,16 +21,17 @@ function SignUpForm({ signUp }) {
       email: ""
     }
   );
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(curr => ({ ...formData, [name]: value }));
   }
 
-
   function handleSubmit(evt) {
     evt.preventDefault();
     signUp(formData);
+    navigate("/");
   }
 
   return (
@@ -43,7 +45,7 @@ function SignUpForm({ signUp }) {
         onChange={handleChange}
         placeholder="Username">
       </input>
-      
+
       <label htmlFor="password">Password</label>
       <input
         id="password"

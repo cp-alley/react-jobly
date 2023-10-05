@@ -5,7 +5,7 @@ import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from './userContext';
-import { useJwt } from "react-jwt";
+import jwt_decode from "jwt-decode";
 
 /** App: Renders navigation bar and handles routes
  *
@@ -19,12 +19,13 @@ function App() {
 
   useEffect(function () {
     async function fetchCurrentUser() {
-      const { decodedToken } = useJwt(token);
+      const decoded = jwt_decode(token);
+      console.log("decoded=", decoded);
       //const payload = jwt.decode(token);
-      const userData = await JoblyApi.getUser(decodedToken.username);
+      const userData = await JoblyApi.getUser(decoded.username);
       setCurrentUser(curr => userData);
     }
-    fetchCurrentUser();
+    if (token !== null) fetchCurrentUser();
   }, [token]);
 
   async function loginUser(userData) {
@@ -38,12 +39,15 @@ function App() {
     setToken(curr => token);
   }
 
-  //logout
+  function logoutUser() {
+    setToken(null);
+    setCurrentUser(null);
+  }
 
   return (
     <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
-        <Nav />
+        <Nav logout={logoutUser} />
         <RoutesList signUp={signUp} loginUser={loginUser} />
       </BrowserRouter>
     </userContext.Provider>

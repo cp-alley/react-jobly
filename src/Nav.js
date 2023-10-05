@@ -7,7 +7,7 @@ import "./Nav.css";
  *
  * Nav -> NavLink
  */
-function Nav() {
+function Nav({logout}) {
   const { currentUser } = useContext(userContext);
 
   return (
@@ -21,7 +21,7 @@ function Nav() {
           <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
           <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink>
           <NavLink className="Nav-navlink" to="/profile">Profile</NavLink>
-          <NavLink className="Nav-navlink" to="/logout">Logout {currentUser.username}</NavLink>
+          <NavLink className="Nav-navlink" to="/" onClick={logout}>Logout {currentUser.username}</NavLink>
 
         </>
       }

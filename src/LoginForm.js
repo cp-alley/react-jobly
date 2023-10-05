@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /** Render form for login
  *
@@ -8,7 +9,8 @@ import { useState } from "react";
  *  /login -> LoginForm
  */
 function LoginForm({ loginUser }) {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ username: "testtest", password: "password" });
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -18,6 +20,7 @@ function LoginForm({ loginUser }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     loginUser(formData);
+    navigate("/");
   }
 
   return (
