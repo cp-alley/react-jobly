@@ -16,7 +16,7 @@ function Nav({logout}) {
   return (
     <nav className="Nav-navbar">
       <NavLink className="Nav-navlink" to="/">Jobly</NavLink>
-      {!currentUser
+      {!currentUser.userData
         ? <>
           <NavLink className="Nav-navlink" to="/signup">SignUp</NavLink>
           <NavLink className="Nav-navlink" to="/login">Login</NavLink></>

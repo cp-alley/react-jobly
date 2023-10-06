@@ -20,20 +20,17 @@ import jwt_decode from "jwt-decode";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loadedCurrentUser, setLoadedCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState({ userData: null, isLoaded: false });
 
 
   useEffect(function () {
     async function fetchCurrentUser() {
-      console.log("useEffect in App. ", loadedCurrentUser, " =loadedCurrentUser in App")
       JoblyApi.token = token;
       const decoded = jwt_decode(token);
       const userData = await JoblyApi.getUser(decoded.username);
-      setCurrentUser(userData);
+      setCurrentUser({ userData: userData, isLoaded: true });
     }
     if (token !== null) fetchCurrentUser();
-    setLoadedCurrentUser(true)
   }, [token]);
 
   async function login(userData) {
@@ -56,10 +53,10 @@ function App() {
   }
 
   return (
-    <userContext.Provider value={{ currentUser, loadedCurrentUser }}>
+    <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
         <Nav logout={logoutUser} />
-        <RoutesList signUp={signUp} loginUser={login} />
+        <RoutesList currentUser={currentUser} signUp={signUp} loginUser={login} />
       </BrowserRouter>
     </userContext.Provider>
   );
