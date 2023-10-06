@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import "./SignupForm.css";
 
 /** SignupForm
  *
@@ -43,60 +44,68 @@ function SignUpForm({ signUp }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+
+    <form onSubmit={handleSubmit} className="SignupForm">
+      <h2>Welcome to Jobly</h2>
       {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
-      <label htmlFor="username">Username</label>
-      <input
-        id="username"
-        name="username"
-        value={formData.username}
-        type="text"
-        onChange={handleChange}
-        placeholder="Username">
-      </input>
-
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        name="password"
-        value={formData.password}
-        type="password"
-        onChange={handleChange}
-        placeholder="Password">
-      </input>
-
-      <label htmlFor="firstName">First Name</label>
-      <input
-        id="firstName"
-        name="firstName"
-        value={formData.firstName}
-        type="text"
-        onChange={handleChange}
-        placeholder="First name">
-      </input>
-
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        id="lastName"
-        name="lastName"
-        value={formData.lastName}
-        type="text"
-        onChange={handleChange}
-        placeholder="Last name">
-      </input>
-
-      <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        name="email"
-        value={formData.email}
-        type="text"
-        onChange={handleChange}
-        placeholder="email">
-      </input>
-
-      <button type="submit">SignUp</button>
+      <div className="SignupForm-field">
+        <label htmlFor="username" className="SignupForm-label">Username</label>
+        <input
+          id="username"
+          name="username"
+          value={formData.username}
+          type="text"
+          onChange={handleChange}
+          placeholder="Username" className="SignupForm-input">
+        </input>
+      </div>
+      <div className="SignupForm-field">
+        <label htmlFor="password" className="SignupForm-label">Password</label>
+        <input
+          id="password"
+          name="password"
+          value={formData.password}
+          type="password"
+          onChange={handleChange}
+          placeholder="Password" className="SignupForm-input">
+        </input>
+      </div>
+      <div className="SignupForm-field">
+        <label htmlFor="firstName" className="SignupForm-label">First Name</label>
+        <input
+          id="firstName"
+          name="firstName"
+          value={formData.firstName}
+          type="text"
+          onChange={handleChange}
+          placeholder="First name" className="SignupForm-input">
+        </input>
+      </div>
+      <div className="SignupForm-field">
+        <label htmlFor="lastName" className="SignupForm-label">Last Name</label>
+        <input
+          id="lastName"
+          name="lastName"
+          value={formData.lastName}
+          type="text"
+          onChange={handleChange}
+          placeholder="Last name" className="SignupForm-input">
+        </input>
+      </div>
+      <div className="SignupForm-field">
+        <label htmlFor="email" className="SignupForm-label">Email</label>
+        <input
+          id="email"
+          name="email"
+          value={formData.email}
+          type="text"
+          onChange={handleChange}
+          placeholder="Email" className="SignupForm-input">
+        </input>
+      </div>
+      <button type="submit" className="SignupForm-button">SignUp</button>
     </form>
+
   );
 
 }

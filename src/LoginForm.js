@@ -37,6 +37,7 @@ function LoginForm({ loginUser }) {
 
   return (
     <form onSubmit={handleSubmit} className="LoginForm">
+      <h2>Welcome back</h2>
       {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <div className="LoginForm-field">
 

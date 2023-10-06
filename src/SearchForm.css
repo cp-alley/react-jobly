@@ -6,25 +6,34 @@
 }
 
 .SearchForm-input {
-  width: 60%;
+  width: 28rem;
   height: 2rem;
+  border: none;
+  border-bottom: 2px solid gray;
   min-width: 16rem;
   padding: 0 .5rem;
-  border-radius: .5rem;
 }
 
 .SearchForm-input:focus {
-  outline-color: darkslateblue;
+  border-color:hsl(147, 50%, 47%);
+  outline: none;
 }
 
 .SearchForm-button {
-  margin-top: 2rem;
-  padding: .25rem 1.5rem;
+  margin: 2rem 0 4rem;
+  padding: .75rem 2rem;
   width: 16rem;
-  font-weight: 500;
-  font-size: 1.125rem;
-  letter-spacing: 1px;
+  font-size: 1.25rem;
   border-radius: .5rem;
-  background-color: darkslateblue;
+  background-color: hsl(147, 50%, 47%);
   color: white;
+  border: none;
+}
+
+.SearchForm-button:hover {
+  background-color: hsl(147, 50%, 55%);
+}
+
+.SearchForm-button:active {
+  background-color: hsl(147, 50%, 40%);
 }

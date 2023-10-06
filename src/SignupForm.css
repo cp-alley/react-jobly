@@ -1,0 +1,47 @@
+.SignupForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 24rem;
+  margin: 6rem auto;
+}
+
+.SignupForm-field {
+  margin-top: 1.5rem;
+
+}
+
+.SignupForm-label {
+  display: block;
+}
+
+.SignupForm-input {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid gray;
+  padding: 0 .5rem
+}
+
+.SignupForm-input:focus {
+  border-color:hsl(147, 50%, 47%);
+  outline: none;
+}
+
+.SignupForm-button {
+  margin: 4rem auto 0;
+  background-color: hsl(147, 50%, 47%);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: .5rem;
+  color: white;
+  font-size: 1.25rem;
+  width: 100%;
+}
+
+.SignupForm-button:hover {
+  background-color: hsl(147, 50%, 55%);
+}
+
+.SignupForm-button:active {
+  background-color: hsl(147, 50%, 40%);
+}
