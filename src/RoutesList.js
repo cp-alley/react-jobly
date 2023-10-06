@@ -17,7 +17,6 @@ import ProfileForm from "./ProfileForm";
  */
 
 function RoutesList({ loginUser, signUp, editUser, currentUser }) {
-  console.log("current user in routes list=", currentUser)
   return (
     <Routes>
       {currentUser.userData &&

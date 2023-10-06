@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SearchForm.css";
-
+import Alert from "./Alert";
 /** SearchForm: renders search bar
  *
  * Props:
@@ -15,10 +15,15 @@ import "./SearchForm.css";
 
 function SearchForm({ handleSearch }) {
   const [formData, setFormData] = useState("");
+  const [alerts, setAlerts] = useState(null);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    handleSearch(formData);
+    try{
+      await handleSearch(formData);
+    }catch(err){
+      setAlerts(err.map(e => e.message));
+    }
   }
 
   function handleChange(evt) {
@@ -28,6 +33,7 @@ function SearchForm({ handleSearch }) {
 
   return (
     <form className="SearchForm" onSubmit={handleSubmit}>
+      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <label htmlFor="search-bar" className="SearchForm-label"></label>
       <input
         id="search-bar"

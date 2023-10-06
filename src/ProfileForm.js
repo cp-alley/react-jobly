@@ -1,4 +1,4 @@
-import {useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import userContext from "./userContext";
@@ -12,20 +12,20 @@ import "./ProfileForm.css";
  *
  *  /profile -> ProfileForm
  */
-function ProfileForm ({ editUser }) {
-  const {currentUser} = useContext(userContext)
+function ProfileForm({ editUser }) {
+  const { currentUser } = useContext(userContext);
   const [formData, setFormData] = useState(getInitialFormData);
   const [alerts, setAlerts] = useState(null);
 
   const navigate = useNavigate();
 
-  function getInitialFormData(){
-    let data = {...currentUser.userData}
+  function getInitialFormData() {
+    let data = { ...currentUser.userData };
     return {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email
-    }
+    };
   }
 
   function handleChange(evt) {
@@ -37,16 +37,17 @@ function ProfileForm ({ editUser }) {
     evt.preventDefault();
     try {
       await editUser(currentUser.userData.username, formData);
-      navigate("/");
+      navigate("/profile");
+      setAlerts(["User profile updated"]);
     } catch (err) {
       setAlerts(err.map(e => e.message));
     }
   }
-
+  //feedback for errors at bottom of form
   return (
     <form onSubmit={handleSubmit} className="ProfileForm">
       <h2>Edit your profile</h2>
-      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
+
       <div className="ProfileForm-field">
         <label htmlFor="username" className="ProfileForm-label">Username</label>
         <input
@@ -61,39 +62,52 @@ function ProfileForm ({ editUser }) {
       </div>
 
       <div className="ProfileForm-field">
-        <label htmlFor="firstName" className="ProfileForm-label">First Name</label>
+        <label htmlFor="firstName"
+          className="ProfileForm-label">First Name</label>
         <input
           id="firstName"
           name="firstName"
           value={formData.firstName}
           type="text"
           onChange={handleChange}
-          placeholder="First name" className="ProfileForm-input">
+          placeholder="First name"
+          className="ProfileForm-input">
         </input>
       </div>
+
       <div className="ProfileForm-field">
-        <label htmlFor="lastName" className="ProfileForm-label">Last Name</label>
+        <label htmlFor="lastName"
+          className="ProfileForm-label">Last Name</label>
         <input
           id="lastName"
           name="lastName"
           value={formData.lastName}
           type="text"
           onChange={handleChange}
-          placeholder="Last name" className="ProfileForm-input">
+          placeholder="Last name"
+          className="ProfileForm-input">
         </input>
       </div>
+
       <div className="ProfileForm-field">
-        <label htmlFor="email" className="ProfileForm-label">Email</label>
+        <label htmlFor="email"
+          className="ProfileForm-label">Email</label>
         <input
           id="email"
           name="email"
           value={formData.email}
           type="text"
           onChange={handleChange}
-          placeholder="Email" className="ProfileForm-input">
+          placeholder="Email"
+          className="ProfileForm-input">
         </input>
       </div>
-      <button type="submit" className="ProfileForm-button">Save changes</button>
+
+      <button
+        type="submit"
+        className="ProfileForm-button">Save changes
+      </button>
+      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
     </form>
 
   );
