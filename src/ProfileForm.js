@@ -38,7 +38,7 @@ function ProfileForm({ editUser }) {
     try {
       await editUser(currentUser.userData.username, formData);
       navigate("/profile");
-      setAlerts(["User profile updated"]);
+      setAlerts([{message:["User profile updated"]}]);
     } catch (err) {
       setAlerts(err);
     }
