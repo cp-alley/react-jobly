@@ -68,7 +68,11 @@ function App() {
     <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
         <Nav logout={logoutUser} />
-        <RoutesList currentUser={currentUser} signUp={signUp} loginUser={login} editUser={editUser}/>
+        <RoutesList
+        currentUser={currentUser}
+        signUp={signUp}
+        loginUser={login}
+        editUser={editUser}/>
       </BrowserRouter>
     </userContext.Provider>
   );
