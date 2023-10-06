@@ -84,6 +84,11 @@ class JoblyApi {
     return res.user;
   }
 
+  static async editUser(username, userData) {
+    const res = await this.request(`users/${username}`, userData, "PATCH");
+    return res.user;
+  }
+
 
   // Authentication Routes
 

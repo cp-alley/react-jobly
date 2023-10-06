@@ -49,6 +49,11 @@ function App() {
     setToken(token);
   }
 
+  async function editUser(username, userData) {
+    const resp = await JoblyApi.editUser(username, userData);
+    setCurrentUser({...currentUser, userData: resp});
+  }
+
   function logoutUser() {
     localStorage.removeItem("token");
     setToken(null);
@@ -63,7 +68,7 @@ function App() {
     <userContext.Provider value={{ currentUser }}>
       <BrowserRouter>
         <Nav logout={logoutUser} />
-        <RoutesList currentUser={currentUser} signUp={signUp} loginUser={login} />
+        <RoutesList currentUser={currentUser} signUp={signUp} loginUser={login} editUser={editUser}/>
       </BrowserRouter>
     </userContext.Provider>
   );

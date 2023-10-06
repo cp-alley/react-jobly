@@ -16,7 +16,8 @@ import ProfileForm from "./ProfileForm";
  * -currentUser
  */
 
-function RoutesList({ loginUser, signUp, currentUser }) {
+function RoutesList({ loginUser, signUp, editUser, currentUser }) {
+  console.log("current user in routes list=", currentUser)
   return (
     <Routes>
       {currentUser.userData &&
@@ -24,7 +25,7 @@ function RoutesList({ loginUser, signUp, currentUser }) {
       <Route path="/companies" element={<CompanyList />}></Route>
       <Route path="/jobs" element={<JobList />}></Route>
       <Route path="/companies/:handle" element={<CompanyDetail />}></Route>
-      <Route path="/profile" element={<ProfileForm />}></Route>
+      <Route path="/profile" element={<ProfileForm editUser={editUser} />}></Route>
       </>
       }
       {!currentUser.userData &&
