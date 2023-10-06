@@ -12,8 +12,8 @@ function Homepage() {
     <div className="Homepage">
       <h1>Jobly</h1>
       <h3>All the jobs in one, convenient place.</h3>
-      {currentUser
-        ? <div>Welcome Back, {currentUser.username}</div>
+      {currentUser.userData
+        ? <div>Welcome Back, {currentUser.userData.username}</div>
         : <div className="Homepage-button-container">
           <Link className="Homepage-button" to="/login">Log in</Link>
           <Link className="Homepage-button" to="/signup">Sign up</Link>

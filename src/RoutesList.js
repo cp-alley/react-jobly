@@ -13,13 +13,13 @@ import ProfileForm from "./ProfileForm";
  * Props
  * -loginUser
  * -signUp
+ * -currentUser
  */
 
 function RoutesList({ loginUser, signUp, currentUser }) {
-  console.log("current user in routes list=", currentUser)
   return (
     <Routes>
-      {currentUser.isLoaded &&
+      {currentUser.userData &&
       <>
       <Route path="/companies" element={<CompanyList />}></Route>
       <Route path="/jobs" element={<JobList />}></Route>
@@ -27,14 +27,13 @@ function RoutesList({ loginUser, signUp, currentUser }) {
       <Route path="/profile" element={<ProfileForm />}></Route>
       </>
       }
-      {!currentUser.isLoaded &&
+      {!currentUser.userData &&
       <>
       <Route path="/login" element={<LoginForm loginUser={loginUser} />}></Route>
       <Route path="/signup" element={<SignUpForm signUp={signUp} />}></Route>
       </>
       }
       <Route path="/" element={<Homepage />}></Route>
-      {console.log("This is where the redirect is")}
       <Route path="*" element={<Navigate to="/" />}></Route>
     </Routes>);
 }

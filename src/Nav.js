@@ -10,7 +10,7 @@ import "./Nav.css";
  *
  * Nav -> NavLink
  */
-function Nav({logout}) {
+function Nav({ logout }) {
   const { currentUser } = useContext(userContext);
 
   return (
@@ -24,8 +24,11 @@ function Nav({logout}) {
           <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
           <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink>
           <NavLink className="Nav-navlink" to="/profile">Profile</NavLink>
-          <Link className="Nav-navlink" to="/" onClick={logout}>Logout {currentUser.username}</Link>
-
+          <Link
+            className="Nav-navlink"
+            to="/"
+            onClick={logout}>Logout {currentUser.userData.username}
+          </Link>
         </>
       }
     </nav>

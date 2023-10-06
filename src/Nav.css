@@ -3,9 +3,10 @@
   justify-content: space-around;
   padding: 1em;
   position: fixed;
-  top:0;
+  top: 0;
   width: 100%;
   background-color: hsl(147, 50%, 47%);
+  z-index: 3;
 }
 
 .Nav-navbar .Nav-navlink {
@@ -19,7 +20,7 @@
   font-weight: 600;
 }
 
-.Nav-navlink:hover{
+.Nav-navlink:hover {
   color: white;
   font-weight: 600;
 }

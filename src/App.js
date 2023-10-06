@@ -4,8 +4,10 @@ import './App.css';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
+import Loading from './Loading';
 import userContext from './userContext';
 import jwt_decode from "jwt-decode";
+
 
 /** App: Renders navigation bar and handles routes
  *
@@ -22,22 +24,23 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = useState({ userData: null, isLoaded: false });
 
-
   useEffect(function () {
+    console.log("useEffect running ", token);
     async function fetchCurrentUser() {
       JoblyApi.token = token;
       const decoded = jwt_decode(token);
       const userData = await JoblyApi.getUser(decoded.username);
       setCurrentUser({ userData: userData, isLoaded: true });
     }
-    if (token !== null) fetchCurrentUser();
+    token !== null
+      ? fetchCurrentUser()
+      : setCurrentUser({ ...currentUser, isLoaded: true });
   }, [token]);
 
   async function login(userData) {
     const token = await JoblyApi.loginUser(userData);
     setToken(token);
     localStorage.setItem("token", token);
-
   }
 
   async function signUp(userData) {
@@ -49,7 +52,11 @@ function App() {
   function logoutUser() {
     localStorage.removeItem("token");
     setToken(null);
-    setCurrentUser(null);
+    setCurrentUser({ userData: null, isLoaded: false });
+  }
+
+  if (!currentUser.isLoaded) {
+    return <Loading />;
   }
 
   return (
@@ -64,7 +71,3 @@ function App() {
 
 export default App;
 
-
-//protected routes:
-//check if token in local storage??
-//state: has a current user??
