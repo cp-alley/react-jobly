@@ -1,4 +1,4 @@
-
+import "./Alert.css";
 
 /** Render an alert message
  *
@@ -9,9 +9,9 @@
  */
 
 function Alert({ message }) {
-  return (
-    <p>{message}</p>
-  );
+  let text = message;
+  text = text.replace('instance.', '');
+  return <p className="Alert">{text}</p>;
 }
 
 export default Alert;

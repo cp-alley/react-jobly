@@ -40,10 +40,19 @@ function ProfileForm({ editUser }) {
       navigate("/profile");
       setAlerts(["User profile updated"]);
     } catch (err) {
-      setAlerts(err.map(e => e.message));
+      setAlerts(err);
     }
   }
-  //feedback for errors at bottom of form
+
+  function renderAlerts(alerts) {
+    return (
+      <div className="Alert-container">
+        {alerts[0].message.map((a, i) =>
+        <Alert key={i} message={a} />)}
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="ProfileForm">
       <h2>Edit your profile</h2>
@@ -107,7 +116,7 @@ function ProfileForm({ editUser }) {
         type="submit"
         className="ProfileForm-button">Save changes
       </button>
-      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
+      {alerts && renderAlerts(alerts)}
     </form>
 
   );

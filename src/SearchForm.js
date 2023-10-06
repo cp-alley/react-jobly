@@ -22,7 +22,7 @@ function SearchForm({ handleSearch }) {
     try{
       await handleSearch(formData);
     }catch(err){
-      setAlerts(err.map(e => e.message));
+      setAlerts(err);
     }
   }
 
@@ -31,9 +31,17 @@ function SearchForm({ handleSearch }) {
     setFormData(curr => value);
   }
 
+  function renderAlerts(alerts) {
+    return (
+      <div className="Alert-container">
+        {alerts[0].message.map((a, i) =>
+        <Alert key={i} message={a} />)}
+      </div>
+    );
+  }
+
   return (
     <form className="SearchForm" onSubmit={handleSubmit}>
-      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <label htmlFor="search-bar" className="SearchForm-label"></label>
       <input
         id="search-bar"
@@ -44,6 +52,7 @@ function SearchForm({ handleSearch }) {
         className="SearchForm-input"
         onChange={handleChange}></input>
       <button type="submit" className="SearchForm-button">Search</button>
+      {alerts && renderAlerts(alerts)}
     </form>
   );
 }

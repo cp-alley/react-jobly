@@ -39,15 +39,24 @@ function SignUpForm({ signUp }) {
       await signUp(formData);
       navigate("/");
     } catch (err) {
-      setAlerts(err.map(e => e.message));
+      setAlerts(err);
     }
+  }
+
+  function renderAlerts(alerts) {
+    return (
+      <div className="Alert-container">
+        {alerts[0].message.map((a, i) =>
+        <Alert key={i} message={a} />)}
+      </div>
+    );
   }
 
   return (
 
     <form onSubmit={handleSubmit} className="SignupForm">
       <h2>Welcome to Jobly</h2>
-      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
+      {console.log("alerts=", alerts)}
       <div className="SignupForm-field">
         <label htmlFor="username" className="SignupForm-label">Username</label>
         <input
@@ -104,9 +113,10 @@ function SignUpForm({ signUp }) {
         </input>
       </div>
       <button type="submit" className="SignupForm-button">SignUp</button>
+      {alerts && renderAlerts(alerts)}
     </form>
 
-  );
+);
 
 }
 

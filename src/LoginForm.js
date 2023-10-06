@@ -31,14 +31,22 @@ function LoginForm({ loginUser }) {
       await loginUser(formData);
       navigate("/");
     } catch (err) {
-      setAlerts(err.map(e => e.message));
+      console.log("err=", err)
+      setAlerts(err);
     }
+  }
+
+  function renderAlerts(alerts) {
+    return (
+      <div className="Alert-container">
+        <Alert message={alerts[0].message} />
+      </div>
+    );
   }
 
   return (
     <form onSubmit={handleSubmit} className="LoginForm">
       <h2>Welcome back</h2>
-      {alerts && alerts.map((a, i) => <Alert key={i} message={a} />)}
       <div className="LoginForm-field">
 
       <label htmlFor="username" className="LoginForm-label">Username</label>
@@ -66,6 +74,7 @@ function LoginForm({ loginUser }) {
       </input>
       </div>
       <button type="submit" className="LoginForm-button">Login</button>
+      {alerts && renderAlerts(alerts)}
     </form>
   );
 }

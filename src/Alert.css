@@ -1,0 +1,14 @@
+.Alert {
+  font-style: italic;
+  color:rgb(221, 52, 52);
+}
+
+.Alert-container {
+  background-color: hsla(0, 33%, 69%, 0.491);
+  border-radius: .5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-weight: 500;
+  box-shadow: 1px 1px 2px hsl(0, 33%, 69%);
+  border: 1px solid rgba(160, 73, 73, 0.471);
+}
