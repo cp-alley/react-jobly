@@ -26,10 +26,15 @@ function App() {
 
   useEffect(function () {
     async function fetchCurrentUser() {
-      JoblyApi.token = token;
-      const decoded = jwt_decode(token);
-      const userData = await JoblyApi.getUser(decoded.username);
-      setCurrentUser({ userData: userData, isLoaded: true });
+      try {
+        JoblyApi.token = token;
+        const decoded = jwt_decode(token);
+        const userData = await JoblyApi.getUser(decoded.username);
+        setCurrentUser({ userData: userData, isLoaded: true });
+      } catch (err) {
+        console.error(err);
+        setCurrentUser({ userData: null, isLoaded: true });
+      }
     }
     token !== null
       ? fetchCurrentUser()

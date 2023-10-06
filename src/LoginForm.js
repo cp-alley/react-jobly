@@ -15,7 +15,7 @@ import "./LoginForm.css"
  *  /login -> LoginForm
  */
 function LoginForm({ loginUser }) {
-  const [formData, setFormData] = useState({ username: "testtest", password: "password" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [alerts, setAlerts] = useState(null);
 
   const navigate = useNavigate();
