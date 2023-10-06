@@ -25,7 +25,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ userData: null, isLoaded: false });
 
   useEffect(function () {
-    console.log("useEffect running ", token);
     async function fetchCurrentUser() {
       JoblyApi.token = token;
       const decoded = jwt_decode(token);
@@ -37,16 +36,17 @@ function App() {
       : setCurrentUser({ ...currentUser, isLoaded: true });
   }, [token]);
 
+
   async function login(userData) {
     const token = await JoblyApi.loginUser(userData);
-    setToken(token);
     localStorage.setItem("token", token);
+    setToken(token);
   }
 
   async function signUp(userData) {
     const token = await JoblyApi.signUpUser(userData);
-    setToken(token);
     localStorage.setItem("token", token);
+    setToken(token);
   }
 
   function logoutUser() {
