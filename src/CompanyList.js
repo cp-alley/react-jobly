@@ -16,17 +16,18 @@ import userContext from "./userContext";
  */
 function CompanyList() {
   const [companies, setCompanies] = useState(null);
-  const [loadedCurrentUser, setLoadedCurrentUser] = useState(false);
-  const { currentUser } = useContext(userContext);
+  //const [loadedCurrentUser, setLoadedCurrentUser] = useState(false);// put this in app
+  const { currentUser, loadedCurrentUser } = useContext(userContext);
 
   useEffect(function () {
+    console.log("useEffect in companyList. ", loadedCurrentUser, " =loadedCurrentUser in CompanyList")
     async function fetchCompanies() {
       let res = await JoblyApi.getCompanyList();
       setCompanies(curr => res);
     }
     fetchCompanies();
-    setLoadedCurrentUser(true);
-  }, []);
+
+  }, [loadedCurrentUser]);
 
   async function handleSearch(searchTerm) {
     let res = await JoblyApi.getCompanyList(searchTerm);
@@ -41,7 +42,9 @@ function CompanyList() {
     return <Loading />;
   }
   // If we have loaded the current user, render as normal. If we have not loadedCurrentUser, render loading screen
-  if (!currentUser && loadedCurrentUser) return <Navigate to="/"/>
+  if(loadedCurrentUser === true){
+    if (!currentUser) return <Navigate to="/" />;
+  }
 
 
   return (

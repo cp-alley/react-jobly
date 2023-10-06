@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import userContext from "./userContext";
 import "./Nav.css";
 
@@ -7,7 +7,7 @@ import "./Nav.css";
  *
  * Props:
  * -logout
- * 
+ *
  * Nav -> NavLink
  */
 function Nav({logout}) {
@@ -24,7 +24,7 @@ function Nav({logout}) {
           <NavLink className="Nav-navlink" to="/companies">Companies</NavLink>
           <NavLink className="Nav-navlink" to="/jobs">Jobs</NavLink>
           <NavLink className="Nav-navlink" to="/profile">Profile</NavLink>
-          <NavLink className="Nav-navlink" to="/" onClick={logout}>Logout {currentUser.username}</NavLink>
+          <Link className="Nav-navlink" to="/" onClick={logout}>Logout {currentUser.username}</Link>
 
         </>
       }
