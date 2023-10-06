@@ -51,7 +51,7 @@ function App() {
 
   async function editUser(username, userData) {
     const resp = await JoblyApi.editUser(username, userData);
-    setCurrentUser({...currentUser, userData: resp});
+    setCurrentUser({ ...currentUser, userData: resp });
   }
 
   function logoutUser() {
@@ -69,10 +69,10 @@ function App() {
       <BrowserRouter>
         <Nav logout={logoutUser} />
         <RoutesList
-        currentUser={currentUser}
-        signUp={signUp}
-        loginUser={login}
-        editUser={editUser}/>
+          currentUser={currentUser}
+          signUp={signUp}
+          loginUser={login}
+          editUser={editUser} />
       </BrowserRouter>
     </userContext.Provider>
   );
